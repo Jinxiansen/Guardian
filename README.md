@@ -8,7 +8,7 @@
 
 Guardian is a **Vapor 3** based Middleware that limits the number of requests from the client based on the IP address + access URL.
 It works by adding the client's IP address to the cache and counting the number of requests that the client can make within the lifecycle defined when the GuardianMiddleware is added, and returns HTTP 429 (too many requests) when the limit is reached. After the time limit expires, the request can be re-initiated. 
-The reason Guardian generates is because [gatekeeper](https://github.com/nodes-vapor/gatekeeper) only supports vapor 2 , thanks very much to the original author!
+The reason Guardian generates is because [gatekeeper](https://github.com/nodes-vapor/gatekeeper) only supports vapor 2 , thanks very much to the original author! 🍺
 
 > Consider that if there is a public IP address in the LAN, increase the unit threshold appropriately.
 
@@ -31,14 +31,14 @@ Update your `Package.swift` file:
 
 `Guardian` has two configurable fields: the maximum frequency and time unit and the cache to use.
 
-  If you do not provide your own cache, Guardian will create its own memory cache.
+If you do not provide your own cache, Guardian will create its own memory cache.
 
 ```swift
 let guardian = GuardianMiddleware(rate: Rate(limit: 20, interval: .minute))
 
 ```
 
-1. **Import header files***
+1. **Import header files**
 
 ```swift
 import Guardian
@@ -48,12 +48,11 @@ import Guardian
 
 ```swift
 
-	var middlewares = MiddlewareConfig() 
+var middlewares = MiddlewareConfig() 
 
-    **middlewares.use(GuardianMiddleware.init(rate: Rate(limit: 2, interval: .minute))) **
+middlewares.use(GuardianMiddleware.init(rate: Rate(limit: 2, interval: .minute)))
 
-    services.register(middlewares)
-}
+services.register(middlewares)
 
 ```
 
@@ -87,8 +86,8 @@ case .day
 
 ## Contacts	![](image/zz.jpg)
 
-#### If you have any questions or suggestions you can raise one [Issues] (https://github.com/Jinxiansen/Guardian/issues) or contact me:
-Email : [@ Jin Xiansen] (hi@jinxiansen.com)
+#### If you have any questions or suggestions you can raise one [Issues](https://github.com/Jinxiansen/Guardian/issues) or contact me:
+Email : [@JinXiansen] (hi@jinxiansen.com)
 
 Twitter : [@Jinxiansen](https://twitter.com/jinxiansen)
 
