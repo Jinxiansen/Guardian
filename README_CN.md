@@ -4,7 +4,7 @@
 [![Vapor Version](https://img.shields.io/badge/Vapor-3-F6CBCA.svg)](http://vapor.codes)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-Guardian 是一个基于 Vapor 3 的 Middleware，它根据IP地址 + 访问的 URL 来限制自客户端的请求数量。
+Guardian 是一个基于 Swift 服务端框架 **[Vapor 3](https://vapor.codes)** 的 Middleware，它根据IP地址 + 访问的 URL 来限制自客户端的请求数量。
 它的工作原理是将客户端 IP 地址添加到缓存中，并计算客户端在添加 GuardianMiddleware 时定义的生命周期内可以做出的请求次数，并在达到限制时返回 HTTP 429（太多请求）。 当限制时间过了后，可以重新发起请求。
 
 > 考虑到如果局域网内公用1个 IP 地址，可以适当增大单位阈值。
