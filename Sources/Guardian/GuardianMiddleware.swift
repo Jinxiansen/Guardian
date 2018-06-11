@@ -8,7 +8,7 @@
 import Foundation
 import Vapor
 
-public final struct GuardianMiddleware: Middleware {
+public struct GuardianMiddleware: Middleware {
     
     internal var cache: MemoryKeyedCache
     internal let limit: Int
