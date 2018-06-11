@@ -25,9 +25,8 @@ Guardian 是一个基于 Vapor 3 的 Middleware，它根据IP地址 + 访问的 
 
 * **全局使用：**
 
-
 `Guardian ` 有两个可配置的字段：最大频率及时间单位和要使用的缓存。
- 如果您不提供自己的缓存，Guardian 将创建自己的内存缓存。
+ 如果你不提供自己的缓存，Guardian 将创建自己的内存缓存。
 
 ```swift
 let guardian = GuardianMiddleware(rate: Rate(limit: 20, interval: .minute))
@@ -43,13 +42,11 @@ import Guardian
 2. **在 services 注册之前加入**
 
 ```swift
+var middlewares = MiddlewareConfig() 
 
-	var middlewares = MiddlewareConfig() 
+middlewares.use(GuardianMiddleware.init(rate: Rate(limit: 2, interval: .minute)))
 
-    **middlewares.use(GuardianMiddleware.init(rate: Rate(limit: 2, interval: .minute))) **
-
-    services.register(middlewares)
-}
+services.register(middlewares)
 
 ```
 
@@ -61,7 +58,6 @@ import Guardian
 #### 将中间件添加到路由组
 
 ```Swift
- 
 let group = router.grouped(GuardianMiddleware(rate: Rate(limit: 25, interval: .minute)))
 
 group.get("welcome") { req in
