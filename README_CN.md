@@ -105,4 +105,4 @@ Twitter : [@Jinxiansen](https://twitter.com/jinxiansen)
 ## License 📄
 
 
-JHUD is released under the [MIT license](LICENSE). See LICENSE for details.
+Guardian is released under the [MIT license](LICENSE). See LICENSE for details.
