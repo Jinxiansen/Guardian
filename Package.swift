@@ -5,11 +5,13 @@ import PackageDescription
 
 let package = Package(
     name: "Guardian",
+    products: [
+        .library(name: "Guardian", targets: ["Guardian"]),
+    ],
     dependencies: [
         .package(url: "https://github.com/vapor/vapor.git", from: "3.0.0")
     ],
     targets: [
-        .target(name: "Guardian", path:"Sources")
-//        .testTarget(name: "MyLibTests",dependencies: ["Guardian","vapor"])
+        .target(name: "Guardian", dependencies: ["Vapor"])
     ]
 )
