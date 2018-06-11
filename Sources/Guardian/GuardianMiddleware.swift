@@ -8,19 +8,19 @@
 import Foundation
 import Vapor
 
-struct GuardianMiddleware: Middleware {
+public final struct GuardianMiddleware: Middleware {
     
     internal var cache: MemoryKeyedCache
     internal let limit: Int
     internal let refreshInterval: Double
     
-    init(rate: Rate, cache: MemoryKeyedCache = MemoryKeyedCache()) {
+    public init(rate: Rate, cache: MemoryKeyedCache = MemoryKeyedCache()) {
         self.cache = cache
         self.limit = rate.limit
         self.refreshInterval = rate.refreshInterval
     }
     
-    func respond(to request: Request, chainingTo next: Responder) throws -> EventLoopFuture<Response> {
+    public func respond(to request: Request, chainingTo next: Responder) throws -> EventLoopFuture<Response> {
         
         let peer = (request.http.remotePeer.hostname ?? "") + request.http.urlString
         
@@ -56,27 +56,24 @@ struct GuardianMiddleware: Middleware {
 }
 
 
-
-
-
 fileprivate struct Keys {
     static let createdAt = "createdAt"
     static let requestsLeft = "requestsLeft"
 }
 
-struct Rate {
+public struct Rate {
     
-    enum Interval {
+    public enum Interval {
         case second
         case minute
         case hour
         case day
     }
     
-    let limit: Int
-    let interval: Interval
+    public let limit: Int
+    public let interval: Interval
     
-    init(limit: Int,interval: Interval) {
+    public init(limit: Int,interval: Interval) {
         self.limit = limit
         self.interval = interval
     }
@@ -93,18 +90,7 @@ struct Rate {
             return 86400
         }
     }
-    
-
-    
+  
 }
-
-
-
-
-
-
-
-
-
 
 
