@@ -103,7 +103,7 @@ case .day
 ## Contacts	![](image/zz.jpg)
 
 #### If you have any questions or suggestions you can raise one [Issues](https://github.com/Jinxiansen/Guardian/issues) or contact me:
-Email : [@JinXiansen] (hi@jinxiansen.com)
+Email : [@JinXiansen](hi@jinxiansen.com)
 
 Twitter : [@Jinxiansen](https://twitter.com/jinxiansen)
 
