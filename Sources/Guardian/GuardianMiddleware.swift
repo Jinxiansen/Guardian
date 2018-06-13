@@ -8,19 +8,31 @@
 import Foundation
 import Vapor
 
-public struct GuardianMiddleware: Middleware {
+public typealias BodyClosure = ((_ req: Request) throws -> Future<Response>?)
+
+struct GuardianMiddleware: Middleware {
     
     internal var cache: MemoryKeyedCache
     internal let limit: Int
     internal let refreshInterval: Double
     
-    public init(rate: Rate, cache: MemoryKeyedCache = MemoryKeyedCache()) {
-        self.cache = cache
+    internal var bodyClosure: BodyClosure?
+    
+    init(rate: Rate,closure: BodyClosure? = nil) {
+        self.cache = MemoryKeyedCache()
+        self.bodyClosure = closure
         self.limit = rate.limit
         self.refreshInterval = rate.refreshInterval
     }
     
-    public func respond(to request: Request, chainingTo next: Responder) throws -> EventLoopFuture<Response> {
+    init(rate: Rate,closure: BodyClosure? = nil, cache: MemoryKeyedCache = MemoryKeyedCache()) {
+        self.cache = cache
+        self.bodyClosure = closure
+        self.limit = rate.limit
+        self.refreshInterval = rate.refreshInterval
+    }
+    
+    func respond(to request: Request, chainingTo next: Responder) throws -> EventLoopFuture<Response> {
         
         let peer = (request.http.remotePeer.hostname ?? "") + request.http.urlString
         
@@ -28,26 +40,27 @@ public struct GuardianMiddleware: Middleware {
             
             let creatString = entry?[Keys.createdAt] ?? ""
             var createdAt = Double(creatString) ?? Date().timeIntervalSince1970
-        
             var requestsLeft = Int(entry?[Keys.requestsLeft] ?? "") ?? self.limit
-            
             let now = Date().timeIntervalSince1970
             
             if now - createdAt >= self.refreshInterval {
                 createdAt = now
                 requestsLeft = self.limit
             }
-
+            
             defer {
                 let dict = [Keys.createdAt:"\(createdAt)",
-                            Keys.requestsLeft:String(requestsLeft)]
+                    Keys.requestsLeft:String(requestsLeft)]
                 _ = self.cache.set(peer, to: dict)
             }
             
             requestsLeft -= 1
             guard requestsLeft >= 0 else {
-                let json = ["status":"429","message":"Visit too often, please try again later"]
-                return try json.encode(for: request)
+                guard let closure = self.bodyClosure,let body = try closure(request) else {
+                    let json = ["status":"429","message":"Visit too often, please try again later"]
+                    return try json.encode(for: request)
+                }
+                return try body.encode(for: request)
             }
             
             return try next.respond(to: request)
@@ -61,19 +74,19 @@ fileprivate struct Keys {
     static let requestsLeft = "requestsLeft"
 }
 
-public struct Rate {
+struct Rate {
     
-    public enum Interval {
+    enum Interval {
         case second
         case minute
         case hour
         case day
     }
     
-    public let limit: Int
-    public let interval: Interval
+    let limit: Int
+    let interval: Interval
     
-    public init(limit: Int,interval: Interval) {
+    init(limit: Int,interval: Interval) {
         self.limit = limit
         self.interval = interval
     }
@@ -90,7 +103,10 @@ public struct Rate {
             return 86400
         }
     }
-  
+    
 }
+
+ 
+
 
 
