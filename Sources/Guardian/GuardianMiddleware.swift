@@ -10,7 +10,7 @@ import Vapor
 
 public typealias BodyClosure = ((_ req: Request) throws -> Future<Response>?)
 
-struct GuardianMiddleware: Middleware {
+public struct GuardianMiddleware: Middleware {
     
     internal var cache: MemoryKeyedCache
     internal let limit: Int
@@ -32,7 +32,7 @@ struct GuardianMiddleware: Middleware {
         self.refreshInterval = rate.refreshInterval
     }
     
-    func respond(to request: Request, chainingTo next: Responder) throws -> EventLoopFuture<Response> {
+    public func respond(to request: Request, chainingTo next: Responder) throws -> EventLoopFuture<Response> {
         
         let peer = (request.http.remotePeer.hostname ?? "") + request.http.urlString
         
@@ -106,7 +106,13 @@ struct Rate {
     
 }
 
- 
+
+
+
+
+
+
+
 
 
 
