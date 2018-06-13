@@ -31,7 +31,7 @@
 更新你的 `Package.swift` 文件：
 
 ```swift
-.package(url: "https://github.com/Jinxiansen/Guardian.git", from: "1.0.5")
+.package(url: "https://github.com/Jinxiansen/Guardian.git", from: "3.0.0")
 ```
 
 

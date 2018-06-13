@@ -32,7 +32,7 @@ The reason Guardian generates is because [gatekeeper](https://github.com/nodes-v
 Update your `Package.swift` file:
 
 ```swift
-.package(url: "https://github.com/Jinxiansen/Guardian.git", from: "3.0")
+.package(url: "https://github.com/Jinxiansen/Guardian.git", from: "3.0.0")
 ```
 
 
