@@ -25,7 +25,7 @@ public struct GuardianMiddleware: Middleware {
         self.refreshInterval = rate.refreshInterval
     }
     
-    public init(rate: Rate,closure: BodyClosure? = nil, cache: MemoryKeyedCache = MemoryKeyedCache()) {
+    public init(rate: Rate,closure: BodyClosure? = nil, cache: MemoryKeyedCache) {
         self.cache = cache
         self.bodyClosure = closure
         self.limit = rate.limit
@@ -76,7 +76,7 @@ fileprivate struct Keys {
 
 public struct Rate {
     
-    enum Interval {
+    public enum Interval {
         case second
         case minute
         case hour
@@ -86,7 +86,7 @@ public struct Rate {
     let limit: Int
     let interval: Interval
     
-    init(limit: Int,interval: Interval) {
+    public init(limit: Int,interval: Interval) {
         self.limit = limit
         self.interval = interval
     }
