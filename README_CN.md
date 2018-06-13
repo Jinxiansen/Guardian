@@ -20,7 +20,7 @@
 
 ### [[English]](README.md)
 
-Guardian 是一个基于 Swift 服务端框架 **[Vapor 3](https://vapor.codes)** 的 Middleware，它根据IP地址 + 访问的 URL 来限制自客户端的请求数量。
+**Guardian** 是一个基于 Swift 服务端框架 **[Vapor 3](https://vapor.codes)** 的 Middleware，它根据IP地址 + 访问的 URL 来限制自客户端的请求数量,支持自定义返回数据类型。
 它的工作原理是将客户端 IP 地址添加到缓存中，并计算客户端在添加 GuardianMiddleware 时定义的生命周期内可以做出的请求次数，并在达到限制时返回 HTTP 429（太多请求）。 当限制时间过了后，可以重新发起请求。
 
 > 考虑到如果局域网内公用1个 IP 地址，可以适当增大单位阈值。
@@ -49,7 +49,7 @@ let guardian = GuardianMiddleware(rate: Rate(limit: 20, interval: .minute)) //�
 
 ```
 
-在 `configure.swift` 中
+在 `configure.swift` 
 
 1. **导入头文件**
 
@@ -83,6 +83,29 @@ group.get("welcome") { req in
 }
 ```
 
+
+### 支持自定义返回数据 📌
+**Guardian** 增加了对自定义返回数据的支持，如下例所示:
+
+返回一个 **JSON** 对象。
+
+```Swift
+middlewares.use(GuardianMiddleware(rate: Rate(limit: 2, interval: .minute), closure: { (req) -> EventLoopFuture<Response>? in
+	let view = ["result":"429","message":"The request is too fast. Please try again later!"]
+	return try view.encode(for: req)
+}))
+```
+
+或返回**leaf/Html** * web页面，
+
+```Swift 
+middlewares.use(GuardianMiddleware(rate: Rate(limit: 25, interval: .minute), closure: { (req) -> EventLoopFuture<Response>? in
+	let view = try req.view().render("leaf/busy")
+	return try view.encode(for: req)
+}))
+```
+
+或者 自定义返回其他类型数据...
 
 #### Rate.Interval 的枚举类型
 
