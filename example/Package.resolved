@@ -60,7 +60,7 @@
         "repositoryURL": "https://github.com/Jinxiansen/Guardian.git",
         "state": {
           "branch": null,
-          "revision": "e6afdf2078247ef1206c2ee91929760a05b3bd46",
+          "revision": "09171f5c06ce277b3794a76c21bec6cefa73770b",
           "version": "3.0.0"
         }
       },
@@ -71,6 +71,15 @@
           "branch": null,
           "revision": "8123ea00e9858b369cd168d0303d33e7d3804d19",
           "version": "3.0.7"
+        }
+      },
+      {
+        "package": "Leaf",
+        "repositoryURL": "https://github.com/vapor/leaf.git",
+        "state": {
+          "branch": null,
+          "revision": "a71cb0cd29ec88ee72baa00668c05e327114f27c",
+          "version": "3.0.0-rc.2.2"
         }
       },
       {
