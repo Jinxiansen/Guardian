@@ -19,7 +19,7 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     
     
     
-    
+//    middlewares.use(GuardianMiddleware.init(rate: Rate.ini, closure: <#T##BodyClosure?##BodyClosure?##(Request) throws -> EventLoopFuture<Response>?#>))
     
     
     
