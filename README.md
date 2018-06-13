@@ -68,7 +68,7 @@ import Guardian
 
 var middlewares = MiddlewareConfig() 
 
-middlewares.use(GuardianMiddleware(rate: Rate(limit: 2, interval: .minute), closure: { (req) -> EventLoopFuture<Response>? in
+middlewares.use(GuardianMiddleware(rate: Rate(limit: 25, interval: .minute), closure: { (req) -> EventLoopFuture<Response>? in
 	let view = ["result":"429","message":"The request is too fast. Please try again later!"]
 	return try view.encode(for: req)
 }))
@@ -99,7 +99,7 @@ Guardian adds support for custom return data, as in the following example:
 Return a **JSON** object:
 
 ```Swift
-middlewares.use(GuardianMiddleware(rate: Rate(limit: 2, interval: .minute), closure: { (req) -> EventLoopFuture<Response>? in
+middlewares.use(GuardianMiddleware(rate: Rate(limit: 20, interval: .minute), closure: { (req) -> EventLoopFuture<Response>? in
 	let view = ["result":"429","message":"The request is too fast. Please try again later!"]
 	return try view.encode(for: req)
 }))

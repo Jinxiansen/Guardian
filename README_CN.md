@@ -62,7 +62,7 @@ import Guardian
 ```swift
 var middlewares = MiddlewareConfig() 
 
-middlewares.use(GuardianMiddleware(rate: Rate(limit: 2, interval: .minute)))
+middlewares.use(GuardianMiddleware(rate: Rate(limit: 22, interval: .minute)))
 
 services.register(middlewares)
 
@@ -90,7 +90,7 @@ group.get("welcome") { req in
 返回一个 **JSON** 对象。
 
 ```Swift
-middlewares.use(GuardianMiddleware(rate: Rate(limit: 2, interval: .minute), closure: { (req) -> EventLoopFuture<Response>? in
+middlewares.use(GuardianMiddleware(rate: Rate(limit: 20, interval: .minute), closure: { (req) -> EventLoopFuture<Response>? in
 	let view = ["result":"429","message":"The request is too fast. Please try again later!"]
 	return try view.encode(for: req)
 }))
