@@ -18,14 +18,14 @@ public struct GuardianMiddleware: Middleware {
     
     internal var bodyClosure: BodyClosure?
     
-    init(rate: Rate,closure: BodyClosure? = nil) {
+    public init(rate: Rate,closure: BodyClosure? = nil) {
         self.cache = MemoryKeyedCache()
         self.bodyClosure = closure
         self.limit = rate.limit
         self.refreshInterval = rate.refreshInterval
     }
     
-    init(rate: Rate,closure: BodyClosure? = nil, cache: MemoryKeyedCache = MemoryKeyedCache()) {
+    public init(rate: Rate,closure: BodyClosure? = nil, cache: MemoryKeyedCache = MemoryKeyedCache()) {
         self.cache = cache
         self.bodyClosure = closure
         self.limit = rate.limit
@@ -74,7 +74,7 @@ fileprivate struct Keys {
     static let requestsLeft = "requestsLeft"
 }
 
-struct Rate {
+public struct Rate {
     
     enum Interval {
         case second
