@@ -28,10 +28,20 @@
 
 ## 安装 📦
 
-更新你的 `Package.swift` 文件：
+请将以下內容添加到您的 `Package.swift` 文件中：
 
 ```swift
-.package(url: "https://github.com/Jinxiansen/Guardian.git", from: "3.0.0")
+let package = Package(
+    name: "Project",
+    dependencies: [
+        ...
+        .package(url: "https://github.com/Jinxiansen/Guardian.git", from: "3.0.0"),
+    ],
+    targets: [
+      .target(name: "App", dependencies: ["Guardian", ... ])
+    ]
+)
+        
 ```
 
 

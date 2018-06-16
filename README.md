@@ -29,10 +29,20 @@ The reason Guardian generates is because [gatekeeper](https://github.com/nodes-v
 
 ## Installation 📦
 
-Update your `Package.swift` file:
+To include it in your package, add the following to your `Package.swift` file.
 
 ```swift
-.package(url: "https://github.com/Jinxiansen/Guardian.git", from: "3.0.0")
+let package = Package(
+    name: "Project",
+    dependencies: [
+        ...
+        .package(url: "https://github.com/Jinxiansen/Guardian.git", from: "3.0.0"),
+    ],
+    targets: [
+      .target(name: "App", dependencies: ["Guardian", ... ])
+    ]
+)
+        
 ```
 
 
