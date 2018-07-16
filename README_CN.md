@@ -18,7 +18,7 @@
     </a>
 </p>
 
-### [[English]](README.md)
+##### [[English]](README.md)
 
 **Guardian** 是一个基于 Swift 服务端框架 **[Vapor 3](https://vapor.codes)** 的 Middleware，它根据IP地址 + 访问的 URL 来限制自客户端的请求数量,支持自定义返回数据类型。
 它的工作原理是将客户端 IP 地址添加到缓存中，并计算客户端在添加 GuardianMiddleware 时定义的生命周期内可以做出的请求次数，并在达到限制时返回 HTTP 429（太多请求）。 当限制时间过了后，可以重新发起请求。
@@ -130,8 +130,9 @@ case .day
 
 ## Contacts	![](image/zz.jpg)
 
-#### 如果有什么疑问和建议可以提1个 [Issues](https://github.com/Jinxiansen/Guardian/issues) 或联系我：
-Email : [@晋先森](hi@jinxiansen.com)
+如果有什么疑问和建议可以提1个 [Issues](https://github.com/Jinxiansen/Guardian/issues) 或联系我：
+
+Email : [hi@jinxiansen.com](hi@jinxiansen.com)
 
 Twitter : [@Jinxiansen](https://twitter.com/jinxiansen)
 

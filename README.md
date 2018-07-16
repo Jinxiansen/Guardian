@@ -18,7 +18,7 @@
 </p>
 
 
-### [《中文版🇨🇳》](README_CN.md)
+[[中文版🇨🇳]](README_CN.md)
 
 Guardian is a **[Vapor 3](https://vapor.codes)** based Middleware that limits the number of requests from the client based on the **IP address + access URL**.
 It works by adding the client's IP address to the cache and counting the number of requests that the client can make within the lifecycle defined when the GuardianMiddleware is added, and returns HTTP 429 (too many requests) when the limit is reached. After the time limit expires, the request can be re-initiated,And support custom return data. 
@@ -139,8 +139,9 @@ case .day
 
 ## Contacts	![](image/zz.jpg)
 
-#### If you have any questions or suggestions you can raise one [Issues](https://github.com/Jinxiansen/Guardian/issues) or contact me:
-Email : [@JinXiansen](hi@jinxiansen.com)
+If you have any questions or suggestions you can raise one [Issues](https://github.com/Jinxiansen/Guardian/issues) or contact me:
+
+Email : [hi@jinxiansen.com](hi@jinxiansen.com)
 
 Twitter : [@Jinxiansen](https://twitter.com/jinxiansen)
 
