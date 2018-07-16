@@ -132,7 +132,7 @@ case .day
 
 如果有什么疑问和建议可以提1个 [Issues](https://github.com/Jinxiansen/Guardian/issues) 或联系我：
 
-Email : [hi@jinxiansen.com](hi@jinxiansen.com)
+Email : hi@jinxiansen.com
 
 Twitter : [@Jinxiansen](https://twitter.com/jinxiansen)
 

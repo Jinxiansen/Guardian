@@ -141,7 +141,7 @@ case .day
 
 If you have any questions or suggestions you can raise one [Issues](https://github.com/Jinxiansen/Guardian/issues) or contact me:
 
-Email : [hi@jinxiansen.com](hi@jinxiansen.com)
+Email : hi@jinxiansen.com
 
 Twitter : [@Jinxiansen](https://twitter.com/jinxiansen)
 
